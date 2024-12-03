@@ -1,0 +1,27 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+restore0Dir
+
+m4 system/blockMeshDictFINE.m4 > system/blockMeshDict
+runApplication blockMesh
+runApplication checkMesh
+runApplication setFields
+
+# mono proc
+#runApplication $(getApplication)
+
+# parallel
+runApplication decomposePar
+runParallel $(getApplication) 
+runApplication reconstructPar
+
+# y+
+echo 'running yplus'
+multiphaseInterFoam -postProcess -func yPlus > log.yplus
+
+runApplication foamToVTK
+#paraview /VTK*series &
+#------------------------------------------------------------------------------

@@ -1,0 +1,219 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2312                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scale 0.01; // in cm
+
+// defining dimensions
+
+
+
+
+
+
+
+ // = L1*4
+ // = 
+ // = 
+ // = 
+
+// x 
+
+
+
+
+
+
+
+
+
+
+
+
+// y
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// defining vertices
+vertices
+(
+    (0.0 0.0 0.0) // Vertex a1b = 0 
+    (0.0 13.6 0.0) // Vertex a2b = 1 
+    (49.3  13.6 0.0) // Vertex a3b = 2 
+    (48.0 0.0 0.0) // Vertex a4b = 3 
+    (0.0 0.0 1.0) // Vertex a1t = 4 
+    (0.0 13.6 1.0) // Vertex a2t = 5 
+    (49.3  13.6 1.0) // Vertex a3t = 6 
+    (48.0 0.0 1.0) // Vertex a4t = 7 
+
+	(51.9 0.0 0.0) // Vertex b1b = 8 
+	(50.6  13.6 0.0) // Vertex b2b = 9 
+	(100.0 13.6 0.0) // Vertex b3b = 10 
+	(100.0 0.0 0.0) // Vertex b4b = 11 
+	(51.9 0.0 1.0) // Vertex b1t = 12 
+	(50.6  13.6 1.0) // Vertex b2t = 13 
+	(100.0 13.6 1.0) // Vertex b3t = 14 
+	(100.0 0.0 1.0) // Vertex b4t = 15 
+
+	// (X12 Y12 Z1) vlabel(c1b)
+	(50.6  30.0 0.0) // Vertex c2b = 16 
+	(100.0 30.0 0.0) // Vertex c3b = 17 
+	// (X13 Y13 Z1) vlabel(c4b)
+	//(X12 Y12 Z2) vlabel(c1t)
+	(50.6  30.0 1.0) // Vertex c2t = 18 
+	(100.0 30.0 1.0) // Vertex c3t = 19 
+	//(X13 Y13 Z2) vlabel(c4t)
+	
+	//(X11 Y11 Z1) vlabel(d1b)
+	//(X21 Y21 Z1) vlabel(d2b)
+	//(X22 Y22 Z1) vlabel(d3b)
+	//(X12 Y12 Z1) vlabel(d4b)
+	//(X11 Y11 Z2) vlabel(d1t)
+	//(X21 Y21 Z2) vlabel(d2t)
+	//(X22 Y22 Z2) vlabel(d3t)
+	//(X12 Y12 Z2) vlabel(d4t)
+	
+	//(X10 Y10 Z1) vlabel(e1b)
+	(0.0 30.0 0.0) // Vertex e2b = 20 
+	(49.3  30.0 0.0) // Vertex e3b = 21 
+	//(X11 Y11 Z1) vlabel(e4b)
+	//(X10 Y10 Z2) vlabel(e1t)
+	(0.0 30.0 1.0) // Vertex e2t = 22 
+	(49.3  30.0 1.0) // Vertex e3t = 23 
+	//(X11 Y11 Z2) vlabel(e4t)
+	
+	
+	
+);
+
+blocks
+(
+    // block A
+    //hex2D(a1, a2, a3, a4)
+    hex (0 3 2 1 4 7 6 5)
+    (192  56  1)
+    simpleGrading (1 1 1)
+    
+    // block B
+    //hex2D(b1, b2, b3, b4)
+    hex (8 11 10 9 12 15 14 13)
+    (192  56  1)
+    simpleGrading (1 1 1)
+    
+    // block C
+    hex (9 10 17 16 13 14 19 18)
+    (192  68  1)
+    simpleGrading (1 1 1)
+    
+    // block D
+    hex (2 9 16 21 6 13 18 23)
+    (6 68  1)
+    simpleGrading (1 1 1)
+    
+    // block E
+    hex (1 2 21 20 5 6 23 22)
+    (192  68  1)
+    simpleGrading (1 1 1)
+);
+
+boundary
+(
+	rightWall
+	{
+		type wall;
+		faces
+		(
+		    (10 14 15 11)
+		    (17 19 14 10)
+		);
+	}
+	leftWall
+	{
+		type wall;
+		faces
+		(
+		    (0 4 5 1)
+		    (1 5 22 20)
+		    
+		);
+	}
+	
+	lowerWall
+	{
+		type wall;
+		faces
+		(
+		    (0 3 7 4)
+		    (2 6 7 3)
+		    (2 9 13 6)
+		    (8 12 13 9)
+		    (8 12 15 11)
+		);
+	}
+	atmosphere
+	{
+		type patch;
+		faces
+		(
+		    (21 23 22 20)
+		    (21 16 18 23)
+		    (17 19 18 16)
+		);
+	}
+
+	
+);
+
+mergePatchPairs
+(
+);
+
