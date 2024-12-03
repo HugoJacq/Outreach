@@ -1,5 +1,7 @@
 # Internal wave tank
 
+This outreach projet was done with the MEOM team (V. Bellemin, E. Cosme, J. Lesommer, H. Jacquet, ...)
+
 ## Built model
 
 ![alt text](https://github.com/HugoJacq/Outreach/blob/main/Internal_Wave_Tank_2024/Capture%20d%E2%80%99%C3%A9cran%20du%202024-12-03%2009-32-25.png?raw=true)
