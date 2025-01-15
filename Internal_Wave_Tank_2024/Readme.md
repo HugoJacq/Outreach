@@ -1,6 +1,6 @@
 # Internal wave tank
 
-This outreach projet was done with the MEOM team (V. Bellemin, E. Cosme, J. Lesommer, H. Jacquet, ...)
+This outreach projet was done with the MEOM team (V. Bellemin, E. Cosme, M. Copin, L. Macé H. Jacquet, ...)
 
 ## Built model
 
